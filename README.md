@@ -34,3 +34,55 @@ MongoDB should be running locally on:
 git clone https://github.com/neelwankhade007-rgb/todo-fullstack-nodejs-mongodb.git
 cd todo-fullstack-nodejs-mongodb
 npm install
+```
+
+### Run the app
+
+Make sure MongoDB is running (for example on your machine: `mongod --dbpath D:\data\db`), then:
+
+```bash
+npm start
+```
+
+Open in your browser:
+
+```text
+http://localhost:3000
+```
+
+## Screenshot
+
+![Todo app screenshot](docs/Screenshot.png)
+
+## API Overview
+
+Base URL: `http://localhost:3000`
+
+- `GET /tasks` – Get all tasks
+- `POST /tasks` – Create a task  
+  Body:
+
+  ```json
+  {
+    "title": "Task title",
+    "description": "Optional description"
+  }
+  ```
+
+- `PUT /tasks/:id` – Update a task (title, description, or completed)
+- `DELETE /tasks/:id` – Delete a task
+
+## Project Structure
+
+```text
+.
+├─ public/
+│  ├─ index.html      # Frontend UI
+│  ├─ style.css       # Styling
+│  └─ script.js       # Frontend logic (fetch API, DOM updates)
+├─ models/
+│  └─ Task.js         # Mongoose Task model
+├─ server.js          # Express server and routes
+├─ package.json
+└─ .gitignore
+```
