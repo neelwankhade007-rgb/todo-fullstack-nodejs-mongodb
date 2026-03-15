@@ -77,7 +77,7 @@ async function addTask() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 title,
-                description: description || " ",
+                description,
             }),
         });
 
@@ -145,7 +145,7 @@ function startEditTask(id, currentTitle, currentDescription) {
     form.querySelector(".btn-save").addEventListener("click", () => {
         const title = titleInput.value.trim();
         if (!title) return;
-        updateTask(id, title, descInput.value.trim() || " ");
+        updateTask(id, title, descInput.value.trim());
     });
     form.querySelector(".btn-cancel").addEventListener("click", () => {
         li.classList.remove("editing");
@@ -159,16 +159,6 @@ function startEditTask(id, currentTitle, currentDescription) {
     titleInput.focus();
 }
 
-function reattachTaskListeners(li, id, title, description) {
-    const actions = li.querySelector(".task-actions");
-    if (!actions) return;
-    const editBtn = actions.querySelector(".btn-edit");
-    const checkbox = actions.querySelector('input[type="checkbox"]');
-    const deleteBtn = actions.querySelector("button:not(.btn-edit)");
-    if (editBtn) editBtn.addEventListener("click", () => startEditTask(id, title, description));
-    if (deleteBtn) deleteBtn.addEventListener("click", () => deleteTask(id));
-}
-
 function escapeHtml(text) {
     const div = document.createElement("div");
     div.textContent = text;
@@ -180,7 +170,7 @@ async function updateTask(id, title, description) {
         const res = await fetch(`${API}/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title, description: description || " " }),
+            body: JSON.stringify({ title, description }),
         });
         if (!res.ok) throw new Error("Failed to update task");
         await loadTasks();
