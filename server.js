@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-mongoose.connect("mongodb://127.0.0.1:27017/todoDB");
+mongoose.connect(process.env.MONGO_URI);
 
 const Task = require('./models/Task');
 
