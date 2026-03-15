@@ -1,4 +1,4 @@
-﻿# Node artifacts
+# Node / npm
 node_modules/
 package-lock.json
 
@@ -19,7 +19,7 @@ pids/
 coverage/
 *.lcov
 
-# Build output
+# Build output (if you add a bundler)
 dist/
 build/
 
@@ -36,5 +36,5 @@ Thumbs.db
 *.swp
 
 # Mongo data (local)
-D:/data/db/
+/data/db/
 
